@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
+    id("kotlin-parcelize")
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -43,6 +44,8 @@ kotlin {
                 implementation(libs.multiplatformSettings)
                 implementation(libs.koin.core)
                 implementation(libs.kstore)
+                implementation(libs.com.arkivanov.decompose)
+                implementation(libs.com.arkivanov.jetbrains.compose)
             }
         }
 
@@ -57,9 +60,13 @@ kotlin {
                 implementation(libs.androidx.appcompat)
                 implementation(libs.androidx.activityCompose)
                 implementation(libs.compose.uitooling)
+                implementation(libs.compose.uitooling.preview)
                 implementation(libs.kotlinx.coroutines.android)
                 implementation(libs.ktor.client.okhttp)
                 implementation(libs.sqlDelight.driver.android)
+                implementation(libs.com.arkivanov.decompose)
+                implementation(libs.koin.core)
+                implementation(libs.koin.android)
             }
         }
 
@@ -69,6 +76,7 @@ kotlin {
                 implementation(compose.desktop.currentOs)
                 implementation(libs.ktor.client.okhttp)
                 implementation(libs.sqlDelight.driver.sqlite)
+                implementation(libs.com.arkivanov.decompose)
             }
         }
 
@@ -97,6 +105,12 @@ android {
     }
     packagingOptions {
         resources.excludes.add("META-INF/**")
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.7"
     }
 }
 
