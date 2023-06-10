@@ -17,7 +17,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import yegor.cheprasov.newscreatorkit.decompose.login.signIn.PreviewSignInComponent
 import yegor.cheprasov.newscreatorkit.decompose.login.signIn.SignInComponent
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -68,7 +67,9 @@ fun SignInScreen(component: SignInComponent) {
             Text("Login")
         }
 
-        TextButton(onClick = {}, modifier = Modifier.padding(top = 16.dp)) {
+        TextButton(onClick = {
+            component.event(SignInComponent.Event.OnRegister)
+        }, modifier = Modifier.padding(top = 16.dp)) {
             Text("Register")
         }
     }
